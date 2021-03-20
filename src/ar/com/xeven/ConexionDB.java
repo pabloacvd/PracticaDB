@@ -22,17 +22,16 @@ public class ConexionDB {
         try {
             conexion = DriverManager.getConnection(dbURL,dbUSER,dbPWD);
             st = conexion.createStatement();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("No se ha podido conectar con la base de datos.");
         }
     }
 
-
-    public ResultSet consultar(String sql) {
+    public ResultSet consultar(String sql){
         try {
             rs = st.executeQuery(sql);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException | NullPointerException e) {
+            System.out.println("No se ha podido realizar su búsqueda.");
         }
         return rs;
     }
