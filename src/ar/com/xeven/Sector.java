@@ -6,14 +6,13 @@ import java.sql.SQLException;
 public class Sector {
 
     public void listarEmpleados() {
-        ConexionDB conexionDB = new ConexionDB("prueba2","root","unafacil");
-        ResultSet resultados = conexionDB.consultar("SELECT * FROM empleados");
+        ConexionDB conexionDB = new ConexionDB("empresa","root","unafacil");
+        ResultSet resultados = conexionDB.consultar("SELECT nombre FROM empleados");
         try {
             if(resultados != null)
                 while (resultados.next())
                     System.out.println("Nombre: " + resultados.getString("nombre"));
-        }catch (
-                SQLException e){
+        }catch (SQLException e){
             System.out.println("No se encontraron resultados.");
         }
     }
