@@ -35,4 +35,15 @@ public class ConexionDB {
         }
         return rs;
     }
+
+    public void cerrar() {
+        try {
+            if(st != null && !st.isClosed())
+                st.close();
+            if(conexion != null && !conexion.isClosed())
+                conexion.close();
+        } catch (SQLException throwables) {
+            System.out.println("Conexión con base de datos cerrada.");
+        }
+    }
 }
