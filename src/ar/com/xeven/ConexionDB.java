@@ -46,4 +46,8 @@ public class ConexionDB {
             System.out.println("Conexión con base de datos cerrada.");
         }
     }
+
+    public boolean insertar(String sql) throws SQLException{
+        return st.execute(sql);
+    }
 }

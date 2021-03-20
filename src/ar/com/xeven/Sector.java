@@ -4,8 +4,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Sector {
+
+    private String dbName = "empresa";
+    private String dbUser = "root";
+    private String dbPwd = "unafacil";
+
     public void buscarYMostrar(String sql){
-        ConexionDB conexionDB = new ConexionDB("empresa","root","unafacil");
+        ConexionDB conexionDB = new ConexionDB(dbName,dbUser,dbPwd);
         ResultSet resultados = conexionDB.consultar(sql);
         try{
             mostrarResultados(resultados);
@@ -27,5 +32,23 @@ public class Sector {
     }
     public void listarEmpleados() {
         buscarYMostrar("SELECT nombre FROM empleados");
+    }
+
+    public boolean agregarEmpleado(Empleado empleado) {
+        ConexionDB conexionDB = new ConexionDB(dbName,dbUser,dbPwd);
+        String nombre = empleado.getNombre();
+        String apellido = empleado.getApellido();
+        String sql = "INSERT INTO empleados (nombre, apellido) VALUES ('"+
+            nombre + "','"+apellido+"');";
+        boolean respuesta = false;
+        try {
+            respuesta = conexionDB.insertar(sql);
+        }catch(SQLException e){
+            e.printStackTrace();
+            System.out.println("No se pudo agregar al empleado.");
+        }finally {
+            conexionDB.cerrar();
+        }
+        return respuesta;
     }
 }
