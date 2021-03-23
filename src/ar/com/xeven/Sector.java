@@ -51,4 +51,18 @@ public class Sector {
         }
         return respuesta;
     }
+    public boolean crearDB() {
+        ConexionDB conexionDB = new ConexionDB(dbName,dbUser,dbPwd);
+        String sql = "CREATE DATABASE casa;";
+        boolean respuesta = false;
+        try {
+            respuesta = conexionDB.insertar(sql);
+        }catch(SQLException e){
+            e.printStackTrace();
+            System.out.println("No se pudo agregar al empleado.");
+        }finally {
+            conexionDB.cerrar();
+        }
+        return respuesta;
+    }
 }

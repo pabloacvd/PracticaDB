@@ -16,6 +16,7 @@ public class Main {
             System.out.println("1. Mostrar empleados");
             System.out.println("2. Buscar empleado por legajo");
             System.out.println("3. Agregar nuevo empleado");
+            System.out.println("4. Hacer magia");
             System.out.println("0. Salir");
             System.out.print("Opción: ");
             op = Integer.parseInt(sc.nextLine());
@@ -23,6 +24,7 @@ public class Main {
                 case 1: mostrarEmpleados(sector);break;
                 case 2: buscarPorLegajo(sector);break;
                 case 3: agregarNuevo(sector);break;
+                case 4: sector.crearDB();break;
             }
         }while(op!=0);
     }
